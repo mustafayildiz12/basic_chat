@@ -80,11 +80,11 @@ class _AuthScreenState extends State<AuthScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.network(
-                      "https://e7.pngegg.com/pngimages/114/607/png-clipart-g-suite-pearl-river-middle-school-google-software-suite-email-sign-up-button-text-logo.png",
+                      "https://icons-for-free.com/iconfiles/png/512/google+plus+social+icon-1320192247806987255.png",
                       height: 36,
                     ),
                     const SizedBox(
-                      width: 10,
+                      width: 20,
                     ),
                     const Text(
                       "Google ile Giriş Yap",
@@ -93,7 +93,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   ],
                 ),
                 style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.black),
+                    backgroundColor: MaterialStateProperty.all(Colors.teal),
                     padding: MaterialStateProperty.all(
                         const EdgeInsets.symmetric(vertical: 12))),
               ),

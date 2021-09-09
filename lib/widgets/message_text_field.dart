@@ -16,20 +16,23 @@ class _MessageTextFieldState extends State<MessageTextField> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
-      color: Colors.white,
+      color: Colors.transparent,
       child: Row(
         children: [
-          Expanded(
+          SizedBox(
+            width: size.width* 3/4,
+            height: size.height/15,
             child: TextField(
               controller: _controller,
               decoration: InputDecoration(
-                  labelText: "yaz...",
-                  fillColor: Colors.grey[100],
+                  fillColor: Colors.grey.shade100,
                   filled: true,
                   border: OutlineInputBorder(
                       borderSide: const BorderSide(width: 0),
                       gapPadding: 10,
+
                       borderRadius: BorderRadius.circular(25))),
             ),
           ),
@@ -87,7 +90,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
               });
             },
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(12),
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.blue,

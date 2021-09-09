@@ -73,11 +73,18 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
               ),
-              IconButton(
-                onPressed: () {
-                  onSearch();
-                },
-                icon: const Icon(Icons.search),
+              Container(
+                margin: const EdgeInsets.all(8),
+                decoration:  BoxDecoration(
+                  color: Colors.black.withOpacity(0.1),
+                  shape: BoxShape.circle
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    onSearch();
+                  },
+                  icon: const Icon(Icons.search),
+                ),
               ),
             ],
           ),
