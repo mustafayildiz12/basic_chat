@@ -48,8 +48,8 @@ class ChatScreen extends StatelessWidget {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage(
-              "http://papers.co/wallpaper/papers.co-ve16-electric-icons-pattern-art-41-iphone-wallpaper.jpg",
+            image: AssetImage(
+              "assets/back.jpg",
             ),
             fit: BoxFit.cover,
           ),
