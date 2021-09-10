@@ -102,7 +102,7 @@ class ChatScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-              child: MessageTextField(currentUser.uid, friendId),
+              child: MessageTextField(currentUser.uid, friendId,friendName),
             ),
           ],
         ),
