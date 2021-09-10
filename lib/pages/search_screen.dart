@@ -1,4 +1,5 @@
 import 'package:basic_chat/models/user_model.dart';
+import 'package:basic_chat/widgets/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -47,6 +48,7 @@ class _SearchScreenState extends State<SearchScreen> {
       });
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -119,8 +121,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   );
                 })
           else if (isLoading == true)
-            const Center(
-              child: CircularProgressIndicator(),
+             Center(
+              child: spinkit,
             ),
         ],
       ),

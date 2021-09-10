@@ -1,3 +1,4 @@
+import 'package:basic_chat/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
@@ -5,10 +6,11 @@ import 'dart:async';
 
 class MessageTextField extends StatefulWidget {
   final String userId;
+  final UserModel currentUser;
   final String friendId;
   final String friendName;
 
-  MessageTextField(this.userId, this.friendId, this.friendName);
+  MessageTextField(this.userId, this.friendId, this.friendName,this.currentUser);
 
   @override
   _MessageTextFieldState createState() => _MessageTextFieldState();
@@ -18,6 +20,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
   TextEditingController _controller = TextEditingController();
 
   final String oneSignalId = "6f1fa57d-6fdc-4547-bdfa-0623913a2464";
+  String _debugLabelString = "";
 
   @override
   void initState() {
@@ -29,7 +32,40 @@ class _MessageTextFieldState extends State<MessageTextField> {
   Future<void> initPlatformState() async {
     OneSignal.shared.setAppId(oneSignalId);
     OneSignal.shared.promptUserForPushNotificationPermission();
+    if (!mounted) return;
+
+    OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
+
+    OneSignal.shared.setRequiresUserPrivacyConsent(false);
+
+    OneSignal.shared
+        .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+      print("OPENED NOTIFICATION");
+      print(result.notification.jsonRepresentation().replaceAll("\\n", "\n"));
+      this.setState(() {
+        _debugLabelString =
+        "Opened notification: \n${result.notification.jsonRepresentation().replaceAll("\\n", "\n")}";
+      });
+    });
+
+    OneSignal.shared
+        .setSubscriptionObserver((OSSubscriptionStateChanges changes) {
+      print("SUBSCRIPTION STATE CHANGED: ${changes.jsonRepresentation()}");
+    });
+
+    OneSignal.shared.setPermissionObserver((OSPermissionStateChanges changes) {
+      print("PERMISSION STATE CHANGED: ${changes.jsonRepresentation()}");
+    });
+
+    OneSignal.shared.setEmailSubscriptionObserver(
+            (OSEmailSubscriptionStateChanges changes) {
+          print("EMAIL SUBSCRIPTION STATE CHANGED ${changes.jsonRepresentation()}");
+        });
+
+    OneSignal.shared.promptUserForPushNotificationPermission(fallbackToSettings: true);
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +97,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
               _controller.clear();
 
               if (message.isNotEmpty) {
+
                 await FirebaseFirestore.instance
                     .collection("users")
                     .doc(widget.userId)

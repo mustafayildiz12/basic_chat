@@ -1,4 +1,5 @@
 import 'package:basic_chat/models/user_model.dart';
+import 'package:basic_chat/widgets/animations.dart';
 import 'package:basic_chat/widgets/message_text_field.dart';
 import 'package:basic_chat/widgets/single_message.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -35,7 +36,7 @@ class ChatScreen extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: friendImage,
                 placeholder: (context, url) =>
-                    const CircularProgressIndicator(),
+                     spinkit,
                 errorWidget: (context, url, error) => const Icon(Icons.error),
                 height: 50,
               ),
@@ -102,7 +103,7 @@ class ChatScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-              child: MessageTextField(currentUser.uid, friendId,friendName),
+              child: MessageTextField(currentUser.uid, friendId,friendName,currentUser),
             ),
           ],
         ),
