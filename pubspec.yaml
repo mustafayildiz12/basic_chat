@@ -41,6 +41,7 @@ dependencies:
   cached_network_image: ^3.1.0
   onesignal_flutter: ^3.2.3
   flutter_spinkit: ^5.1.0
+  flutter_overboard: ^2.0.1
 
 dev_dependencies:
   flutter_launcher_icons: ^0.9.2

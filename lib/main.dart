@@ -1,17 +1,15 @@
 import 'package:basic_chat/models/user_model.dart';
-import 'package:basic_chat/pages/auth_screen.dart';
 import 'package:basic_chat/pages/home_screen.dart';
+import 'package:basic_chat/pages/on_boarding.dart';
+import 'package:basic_chat/widgets/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
 
   runApp(const MyApp());
 }
@@ -29,7 +27,7 @@ class MyApp extends StatelessWidget {
       UserModel userModel = UserModel.fromJson(userData);
       return HomeScreen(user: userModel);
     } else {
-      return const AuthScreen();
+      return  OnBoarding(title: "title");
     }
   }
 
@@ -47,9 +45,9 @@ class MyApp extends StatelessWidget {
             if (snapshot.hasData) {
               return snapshot.data!;
             }
-            return const Scaffold(
+            return  Scaffold(
               body: Center(
-                child: CircularProgressIndicator(),
+                child: spinkit,
               ),
             );
           },
