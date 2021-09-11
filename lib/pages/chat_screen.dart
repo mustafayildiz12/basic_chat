@@ -6,6 +6,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'friend_details.dart';
+
 class ChatScreen extends StatelessWidget {
   final UserModel currentUser;
   final String friendId;
@@ -31,14 +33,23 @@ class ChatScreen extends StatelessWidget {
               friendName,
               style: const TextStyle(fontSize: 20),
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(80),
-              child: CachedNetworkImage(
-                imageUrl: friendImage,
-                placeholder: (context, url) =>
-                     spinkit,
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-                height: 50,
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> FriendDetails(
+                  friendId: friendId,
+                  friendName: friendName,
+                  friendImage: friendImage
+                )));
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(80),
+                child: CachedNetworkImage(
+                  imageUrl: friendImage,
+                  placeholder: (context, url) =>
+                       spinkit,
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  height: 50,
+                ),
               ),
             ),
           ],

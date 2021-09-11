@@ -1,3 +1,4 @@
+
 import 'package:basic_chat/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,6 +22,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
 
   final String oneSignalId = "6f1fa57d-6fdc-4547-bdfa-0623913a2464";
   String _debugLabelString = "";
+
 
   @override
   void initState() {
@@ -66,7 +68,6 @@ class _MessageTextFieldState extends State<MessageTextField> {
   }
 
 
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -75,7 +76,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
       child: Row(
         children: [
           SizedBox(
-            width: size.width * 3 / 4,
+            width: size.width * 7.8 / 10,
             height: size.height / 15,
             child: TextField(
               controller: _controller,
@@ -89,7 +90,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
             ),
           ),
           const SizedBox(
-            width: 16,
+            width: 14,
           ),
           GestureDetector(
             onTap: () async {
